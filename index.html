@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>5 เดือนของเรา</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Charm:wght@400;700&family=Mali:wght@400;500;600&family=IBM+Plex+Sans+Thai+Looped:wght@400;500;600&display=swap">
+<style>
+/* Layout: a gift you play with — sealed envelope opens the page, then letter, a "do you love me" dodge game, flip cards, and the 5-month thread */
+:root {
+  --bg: #fbeef1;
+  --paper: #fffafb;
+  --ink: #4a1b2c;
+  --muted: #8a5a68;
+  --accent: #e0476f;
+  --line: #f1cdd7;
+  --soft: #fde3ea;
+  --env: #f4b6c6;
+  --env-dark: #e795ab;
+  --env-flap: #f8c9d5;
+  --gold: #e7a83a;
+  --foil: #d9a0b0;
+  --f-display: "Charm", "Mali", serif;
+  --f-hand: "Mali", "IBM Plex Sans Thai Looped", sans-serif;
+  --f-ui: "IBM Plex Sans Thai Looped", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1d0f17; --paper: #2a1621; --ink: #fbe4ea; --muted: #c79eac;
+    --accent: #ff7d9c; --line: #47283a; --soft: #3a1d2c;
+    --env: #8c3f58; --env-dark: #6e2c42; --env-flap: #a24d69; --gold: #f2bd57; --foil: #7a4558;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1d0f17; --paper: #2a1621; --ink: #fbe4ea; --muted: #c79eac;
+  --accent: #ff7d9c; --line: #47283a; --soft: #3a1d2c;
+  --env: #8c3f58; --env-dark: #6e2c42; --env-flap: #a24d69; --gold: #f2bd57; --foil: #7a4558;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f-hand);
+  font-size: 17px;
+  line-height: 1.85;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 24px 96px;
+  overflow-x: hidden;
+}
+.wrap { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 64px; }
+h2 { font-family: var(--f-display); font-weight: 400; font-size: 36px; line-height: 1.3; margin: 0; text-wrap: balance; }
+.eyebrow { font-family: var(--f-ui); font-size: 13px; color: var(--muted); letter-spacing: .06em; margin: 0 0 4px; }
+.sec-head { margin-bottom: 20px; }
+.btn {
+  font-family: var(--f-ui); font-size: 15px; font-weight: 500;
+  color: #fff; background: var(--accent); border: 0; border-radius: 999px;
+  padding: 12px 22px; cursor: pointer; transition: transform .2s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: scale(.96); }
+.ghost { background: var(--paper); color: var(--accent); border: 1.5px solid var(--accent); }
+button:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+/* ambient hearts */
+.ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.ambient span {
+  position: absolute; bottom: -40px; color: var(--accent); opacity: .14;
+  animation: rise linear infinite;
+}
+@keyframes rise { to { transform: translateY(-115vh) rotate(25deg); } }
+
+/* envelope hero */
+.hero { display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; }
+.stage { padding-top: 128px; width: 100%; display: flex; justify-content: center; }
+.env {
+  position: relative; width: min(340px, 100%); aspect-ratio: 3 / 2;
+  border: 0; padding: 0; background: none; cursor: pointer; perspective: 900px;
+}
+.env:not(.open) { animation: wiggle 2.6s ease-in-out infinite; }
+@keyframes wiggle { 0%, 80%, 100% { transform: rotate(0); } 85% { transform: rotate(-3deg); } 90% { transform: rotate(3deg); } 95% { transform: rotate(-2deg); } }
+.env-back { position: absolute; inset: 0; background: var(--env-dark); border-radius: 10px; }
+.card {
+  position: absolute; left: 7%; right: 7%; top: 8%; height: 84%; z-index: 2;
+  background: var(--paper); border-radius: 8px; padding-top: 12px;
+  display: flex; flex-direction: column; align-items: center; gap: 0;
+  transition: transform 1s cubic-bezier(.2, .9, .2, 1) .4s;
+  box-shadow: 0 6px 18px -8px rgba(90, 20, 45, .35);
+}
+.env.open .card { transform: translateY(-64%); }
+.c-small { font-family: var(--f-ui); font-size: 12px; color: var(--muted); letter-spacing: .08em; }
+.c-big { font-family: var(--f-display); font-weight: 700; font-size: 44px; line-height: 1.15; color: var(--accent); }
+.c-names { font-family: var(--f-hand); font-size: 15px; color: var(--ink); }
+.env-pocket {
+  position: absolute; inset: 0; z-index: 3; background: var(--env); border-radius: 10px;
+  clip-path: polygon(0 0, 50% 54%, 100% 0, 100% 100%, 0 100%);
+}
+.flap {
+  position: absolute; left: 0; right: 0; top: 0; height: 62%; z-index: 4;
+  background: var(--env-flap); clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top; transition: transform .55s ease, z-index 0s .28s;
+}
+.env.open .flap { transform: rotateX(180deg); z-index: 1; }
+.seal {
+  position: absolute; left: 50%; top: 62%; z-index: 5; width: 56px; height: 56px;
+  transform: translate(-50%, -50%); border-radius: 50%;
+  background: var(--accent); color: #fff; font-size: 26px; line-height: 56px;
+  box-shadow: inset 0 0 0 4px rgba(255, 255, 255, .25), 0 4px 10px -3px rgba(90, 20, 45, .5);
+  transition: opacity .3s, transform .3s;
+}
+.env.open .seal { opacity: 0; transform: translate(-50%, -50%) scale(.3) rotate(40deg); }
+.hint { font-family: var(--f-ui); font-size: 14px; color: var(--muted); margin: 0; min-height: 1.5em; }
+.counter {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; width: 100%;
+  font-family: var(--f-ui); font-size: 12px; color: var(--muted);
+}
+.counter div { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 10px 4px; line-height: 1.4; }
+.counter b { display: block; color: var(--ink); font-weight: 600; font-size: clamp(16px, 4.6vw, 24px); font-variant-numeric: tabular-nums; }
+
+/* letter */
+.letter {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 4px;
+  padding: 32px clamp(20px, 6vw, 44px);
+  background-image: repeating-linear-gradient(to bottom, transparent 0 calc(1.85em - 1px), var(--line) calc(1.85em - 1px) 1.85em);
+  background-position: 0 32px;
+  transform: rotate(-.6deg);
+  box-shadow: 0 18px 40px -24px rgba(120, 30, 60, .35);
+}
+.letter p { margin: 0 0 1.85em; text-wrap: pretty; }
+.letter p:last-child { margin-bottom: 0; }
+.to { font-family: var(--f-display); font-size: 30px; line-height: 1.85; }
+.sign { font-family: var(--f-display); font-size: 26px; text-align: right; color: var(--accent); }
+.hl { background: linear-gradient(transparent 58%, var(--soft) 58%); }
+
+/* love me? */
+.ask { background: var(--paper); border: 1px solid var(--line); border-radius: 20px; padding: 24px; text-align: center; }
+.ask-q { font-family: var(--f-display); font-size: 34px; margin: 0; line-height: 1.4; }
+.ask-area { position: relative; height: 190px; margin-top: 8px; }
+#yes, #no { position: absolute; transform: translate(-50%, -50%); white-space: nowrap; }
+#yes { left: 32%; top: 50%; transition: transform .25s ease; }
+#no { left: 68%; top: 50%; transition: left .22s ease, top .22s ease, font-size .2s; }
+.ask-msg { font-family: var(--f-ui); font-size: 14px; color: var(--muted); min-height: 1.6em; margin: 0; }
+.ask.won .ask-msg { color: var(--accent); font-size: 18px; font-family: var(--f-hand); font-weight: 600; }
+
+/* flip cards */
+.flips { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+.flip { display: block; width: 100%; perspective: 800px; background: none; border: 0; padding: 0; height: 156px; cursor: pointer; font: inherit; color: inherit; }
+.flip-in { display: block; position: relative; width: 100%; height: 100%; transition: transform .65s cubic-bezier(.3, 1.4, .5, 1); transform-style: preserve-3d; }
+.flip.on .flip-in { transform: rotateY(180deg); }
+.face {
+  position: absolute; inset: 0; border-radius: 14px; padding: 14px;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+}
+.front {
+  background: var(--accent); color: #fff;
+  background-image: radial-gradient(rgba(255, 255, 255, .18) 1.5px, transparent 1.6px);
+  background-size: 14px 14px;
+}
+.front .h { display: block; font-size: 38px; line-height: 1; }
+.front .k { display: block; font-family: var(--f-ui); font-size: 12px; letter-spacing: .1em; margin-top: 8px; white-space: nowrap; }
+.back { background: var(--paper); border: 1.5px solid var(--line); transform: rotateY(180deg); font-size: 15px; line-height: 1.55; }
+.flip-count { font-family: var(--f-ui); font-size: 13px; color: var(--muted); margin: 12px 0 0; }
+
+/* months */
+.months { list-style: none; margin: 0; padding: 0 0 0 22px; border-left: 2px solid var(--line); display: flex; flex-direction: column; gap: 18px; }
+.months li { position: relative; }
+.months li::before {
+  content: ""; position: absolute; left: -30px; top: .6em; width: 14px; height: 14px;
+  border-radius: 50%; background: var(--paper); border: 2px solid var(--accent);
+}
+.months li.now::before { background: var(--accent); animation: pulse 1.6s ease-in-out infinite; }
+@keyframes pulse { 50% { box-shadow: 0 0 0 7px var(--soft); } }
+.mdate { font-family: var(--f-ui); font-size: 13px; color: var(--muted); letter-spacing: .05em; display: block; }
+.months li.now .mtext { color: var(--accent); font-weight: 600; }
+
+/* music */
+.music {
+  position: fixed; z-index: 20;
+  right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 8px 20px -8px rgba(120, 30, 60, .5);
+}
+.music.on .note-ic { display: inline-block; animation: bob .6s ease-in-out infinite alternate; }
+@keyframes bob { to { transform: translateY(-3px) rotate(-8deg); } }
+
+footer { font-family: var(--f-ui); font-size: 13px; color: var(--muted); text-align: center; }
+#fx { position: fixed; inset: 0; pointer-events: none; z-index: 50; width: 100%; height: 100%; }
+
+@media (max-width: 440px) {
+  .counter { grid-template-columns: repeat(2, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ambient, .env:not(.open) { animation: none; }
+  .ambient { display: none; }
+  .letter { transform: none; }
+  .months li.now::before, .music.on .note-ic { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="ambient" aria-hidden="true" id="ambient"></div>
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<main class="wrap">
+  <header class="hero">
+    <div class="stage">
+      <button class="env" id="env" type="button" aria-label="เปิดซองจดหมาย">
+        <span class="env-back"></span>
+        <span class="card">
+          <span class="c-small">สุขสันต์ครบรอบ</span>
+          <span class="c-big">5 เดือน</span>
+          <span class="c-names">ดู้ดๆ ♡ เค้า</span>
+        </span>
+        <span class="env-pocket"></span>
+        <span class="flap"></span>
+        <span class="seal">♡</span>
+      </button>
+    </div>
+    <p class="hint" id="hint">มีจดหมายมาถึงดู้ด แตะที่ซองเพื่อเปิดเลย</p>
+    <div class="counter" aria-label="เวลาที่คบกัน">
+      <div><b id="d">153</b>วัน</div>
+      <div><b id="h">3,672</b>ชั่วโมง</div>
+      <div><b id="m">220,320</b>นาที</div>
+      <div><b id="s">13,219,200</b>วินาที</div>
+    </div>
+  </header>
+
+  <article class="letter">
+    <p class="to">ถึง ดู้ดๆ ของเค้า</p>
+    <p>วันนี้ครบ 5 เดือนแล้วนะ เร็วมากเลย รู้ตัวอีกทีเราก็มาไกลขนาดนี้แล้ว</p>
+    <p><span class="hl">ขอบคุณที่ดู้ดยังอยู่เคียงข้างเค้ามาตลอด</span> ทั้งวันที่เค้าอารมณ์ดี และวันที่เค้างี่เง่า ดู้ดก็ไม่เคยปล่อยมือเค้าเลย ทุกครั้งที่เหนื่อย แค่ได้คุยกับดู้ดก็หายเหนื่อยแล้ว</p>
+    <p>อยากให้ดู้ดรู้ว่า <span class="hl">เค้ายังรักดู้ดเหมือนวันแรกที่เจอกัน</span> แล้วทุกวันที่ได้รู้จักดู้ดมากขึ้น เค้าก็รักมากขึ้นอีกเรื่อยๆ</p>
+    <p>ขอให้ดู้ดมีความสุขมากๆ ยิ้มเยอะๆ ไม่ต้องเหนื่อยคนเดียว เพราะต่อจากนี้จะมีเค้าอยู่ข้างๆ เสมอ เดือนที่ 6, 7 ไปจนถึงปีที่เท่าไหร่ก็ตาม เค้าก็อยากอยู่กับดู้ดแบบนี้</p>
+    <p>รักดู้ดที่สุดในโลกเลย</p>
+    <p class="sign">— เค้า ♡</p>
+  </article>
+
+  <section class="ask" id="ask">
+    <p class="eyebrow">คำถามสำคัญ ตอบดีๆ นะ</p>
+    <p class="ask-q">ดู้ดรักเค้าไหม?</p>
+    <div class="ask-area" id="area">
+      <button class="btn" id="yes" type="button">รักสิ ♡</button>
+      <button class="btn ghost" id="no" type="button">ไม่รัก</button>
+    </div>
+    <p class="ask-msg" id="askMsg">&nbsp;</p>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">แตะการ์ดทีละใบ</p>
+      <h2>เหตุผลที่เค้ารักดู้ด</h2>
+    </div>
+    <div class="flips" id="flips"></div>
+    <p class="flip-count" id="flipCount">เปิดแล้ว 0 จาก 8 ใบ</p>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">9 มิ.ย. — 9 พ.ย. 2569</p>
+      <h2>5 เดือนของเรา</h2>
+    </div>
+    <ol class="months">
+      <li><span class="mdate">9 ก.ค. 2569 · เดือนที่ 1</span><span class="mtext">เริ่มต้นแบบเขินๆ คุยกันทีไรยิ้มไม่หุบ</span></li>
+      <li><span class="mdate">9 ส.ค. 2569 · เดือนที่ 2</span><span class="mtext">เริ่มรู้ใจกัน รู้ว่าดู้ดชอบอะไร ไม่ชอบอะไร</span></li>
+      <li><span class="mdate">9 ก.ย. 2569 · เดือนที่ 3</span><span class="mtext">คุยกันทุกวันจนติด วันไหนไม่ได้คุยคือคิดถึงมาก</span></li>
+      <li><span class="mdate">9 ต.ค. 2569 · เดือนที่ 4</span><span class="mtext">มีเรื่องให้หัวเราะด้วยกันเยอะจนนับไม่ไหว</span></li>
+      <li class="now"><span class="mdate">9 พ.ย. 2569 · เดือนที่ 5</span><span class="mtext">ยังรักเหมือนวันแรก และมากกว่าเดิมอีก</span></li>
+    </ol>
+  </section>
+
+  <footer>ทำด้วยความรักจากเค้า · แตะตรงไหนของหน้าก็ได้ มีหัวใจออกมานะ</footer>
+</main>
+
+<button class="btn music" id="music" type="button"><span class="note-ic">♪</span> เปิดกล่องดนตรี</button>
+
+<script>
+(function () {
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function token(name, fb) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fb; }
+
+  /* ---------- counter ---------- */
+  var start = new Date("2026-06-09T00:00:00+07:00"); // วันเริ่มคบ แก้ได้ตรงนี้
+  var fmt = new Intl.NumberFormat("en-US");
+  function tick() {
+    var ms = Math.max(0, Date.now() - start.getTime());
+    document.getElementById("d").textContent = fmt.format(Math.floor(ms / 864e5));
+    document.getElementById("h").textContent = fmt.format(Math.floor(ms / 36e5));
+    document.getElementById("m").textContent = fmt.format(Math.floor(ms / 6e4));
+    document.getElementById("s").textContent = fmt.format(Math.floor(ms / 1e3));
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* ---------- ambient hearts ---------- */
+  var amb = document.getElementById("ambient");
+  for (var a = 0; a < 14; a++) {
+    var sp = document.createElement("span");
+    sp.textContent = "♥";
+    sp.style.left = (Math.random() * 100) + "%";
+    sp.style.fontSize = (12 + Math.random() * 26) + "px";
+    sp.style.animationDuration = (14 + Math.random() * 16) + "s";
+    sp.style.animationDelay = (-Math.random() * 30) + "s";
+    amb.appendChild(sp);
+  }
+
+  /* ---------- fx: hearts + confetti ---------- */
+  var cv = document.getElementById("fx"), ctx = cv.getContext("2d"), parts = [], running = false;
+  function size() { var r = window.devicePixelRatio || 1; cv.width = innerWidth * r; cv.height = innerHeight * r; ctx.setTransform(r, 0, 0, r, 0, 0); }
+  size(); addEventListener("resize", size);
+  function heartPath(c, x, y, s) {
+    c.beginPath(); c.moveTo(x, y + 3 * s);
+    c.bezierCurveTo(x - 6 * s, y - 2 * s, x - 3 * s, y - 8 * s, x, y - 4 * s);
+    c.bezierCurveTo(x + 3 * s, y - 8 * s, x + 6 * s, y - 2 * s, x, y + 3 * s);
+  }
+  function burst(x, y, n, opt) {
+    if (reduce) return;
+    opt = opt || {};
+    var cols = [token("--accent", "#e0476f"), token("--gold", "#e7a83a"), token("--env", "#f4b6c6")];
+    for (var k = 0; k < n; k++) {
+      var conf = opt.confetti && Math.random() < .5;
+      var sp = opt.power || 5;
+      parts.push({
+        x: x, y: y, vx: (Math.random() - .5) * sp * 1.4, vy: -Math.random() * sp - 2,
+        s: conf ? 1 : 1 + Math.random() * 1.8, life: 1, conf: conf,
+        rot: Math.random() * 6, vr: (Math.random() - .5) * .3,
+        col: conf ? cols[k % 3] : (Math.random() < .8 ? cols[0] : cols[1])
+      });
+    }
+    if (!running) { running = true; requestAnimationFrame(loop); }
+  }
+  function loop() {
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    parts = parts.filter(function (p) { return p.life > 0 && p.y < innerHeight + 40; });
+    parts.forEach(function (p) {
+      p.x += p.vx; p.y += p.vy; p.vy += .07; p.vx *= .99; p.life -= .01; p.rot += p.vr;
+      ctx.save(); ctx.globalAlpha = Math.max(p.life, 0); ctx.fillStyle = p.col;
+      if (p.conf) { ctx.translate(p.x, p.y); ctx.rotate(p.rot); ctx.fillRect(-4, -2, 8, 4); }
+      else { heartPath(ctx, p.x, p.y, p.s); ctx.fill(); }
+      ctx.restore();
+    });
+    if (parts.length) requestAnimationFrame(loop); else { running = false; ctx.clearRect(0, 0, innerWidth, innerHeight); }
+  }
+  document.addEventListener("pointerdown", function (e) {
+    if (e.target.closest("button, canvas, a")) return;
+    burst(e.clientX, e.clientY, 6, { power: 4 });
+  });
+
+  /* ---------- envelope ---------- */
+  var env = document.getElementById("env"), hint = document.getElementById("hint");
+  env.addEventListener("click", function () {
+    if (env.classList.contains("open")) {
+      var r0 = env.getBoundingClientRect();
+      burst(r0.left + r0.width / 2, r0.top, 14);
+      return;
+    }
+    env.classList.add("open");
+    env.setAttribute("aria-label", "ซองจดหมายเปิดแล้ว");
+    hint.textContent = "สุขสันต์ครบรอบ 5 เดือนนะดู้ด เลื่อนลงไปอ่านจดหมายได้เลย";
+    var r = env.getBoundingClientRect();
+    setTimeout(function () {
+      burst(r.left + r.width / 2, r.top + r.height * .3, 50, { confetti: true, power: 8 });
+      burst(r.left, r.top + r.height / 2, 18, { confetti: true, power: 6 });
+      burst(r.right, r.top + r.height / 2, 18, { confetti: true, power: 6 });
+    }, 700);
+  });
+
+  /* ---------- love me? ---------- */
+  var area = document.getElementById("area"), yes = document.getElementById("yes"), no = document.getElementById("no");
+  var askMsg = document.getElementById("askMsg"), ask = document.getElementById("ask");
+  var dodges = 0, lastDodge = 0;
+  var lines = ["จับไม่ได้หรอก 555", "ปุ่มนี้ไม่ให้กดนะ", "หนีอีกแล้ว", "ลองกดปุ่มชมพูดีกว่าไหม", "ยอมแพ้เถอะดู้ด", "ปุ่มนี้พังแล้วจ้า", "ตอบว่ารักเถอะนะ"];
+  function dodge() {
+    var now = Date.now(); if (now - lastDodge < 150) return; lastDodge = now;
+    if (ask.classList.contains("won")) return;
+    dodges++;
+    var A = area.getBoundingClientRect(), Y = yes.getBoundingClientRect();
+    var w = no.offsetWidth, h = no.offsetHeight, x, y, tries = 0;
+    do {
+      x = w / 2 + Math.random() * (A.width - w);
+      y = h / 2 + Math.random() * (A.height - h);
+      tries++;
+    } while (tries < 20 && Math.abs((A.left + x) - (Y.left + Y.width / 2)) < (w + Y.width) / 2 + 8 && Math.abs((A.top + y) - (Y.top + Y.height / 2)) < (h + Y.height) / 2 + 8);
+    no.style.left = x + "px"; no.style.top = y + "px";
+    no.style.fontSize = Math.max(10, 15 - dodges) + "px";
+    yes.style.transform = "translate(-50%, -50%) scale(" + Math.min(1.7, 1 + dodges * .1) + ")";
+    askMsg.textContent = lines[(dodges - 1) % lines.length];
+  }
+  no.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") dodge(); });
+  no.addEventListener("pointerdown", function (e) { e.preventDefault(); dodge(); });
+  no.addEventListener("click", function (e) { e.preventDefault(); dodge(); });
+  yes.addEventListener("click", function () {
+    ask.classList.add("won");
+    no.hidden = true;
+    yes.textContent = "รักที่สุด ♡";
+    askMsg.textContent = "เย้! เค้าก็รักดู้ดที่สุดในโลกเลย";
+    var r = yes.getBoundingClientRect();
+    burst(r.left + r.width / 2, r.top + r.height / 2, 60, { confetti: true, power: 9 });
+  });
+
+  /* ---------- flip cards ---------- */
+  var reasons = [
+    "ตอนดู้ดยิ้ม โลกของเค้าสว่างขึ้นทันที",
+    "ดู้ดห่วงเค้าแม้แต่เรื่องเล็กๆ ที่เค้าลืมไปแล้ว",
+    "เวลาคุยกับดู้ด เค้าลืมเวลาไปเลย",
+    "ดู้ดอดทนกับความงี่เง่าของเค้าได้เสมอ",
+    "เสียงดู้ดฟังแล้วหายเหนื่อยทุกที",
+    "ดู้ดทำให้วันธรรมดากลายเป็นวันพิเศษ",
+    "ดู้ดอยู่ข้างเค้า แม้ในวันที่เค้าไม่น่ารักเลย",
+    "เพราะดู้ดคือดู้ด แค่นี้ก็พอแล้ว"
+  ];
+  var flips = document.getElementById("flips"), flipCount = document.getElementById("flipCount"), opened = 0;
+  reasons.forEach(function (r, i) {
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "flip"; b.setAttribute("aria-label", "การ์ดใบที่ " + (i + 1));
+    b.innerHTML = '<span class="flip-in"><span class="face front"><span class="h">♥</span><span class="k">ใบที่ ' + (i + 1) + '</span></span><span class="face back"></span></span>';
+    b.querySelector(".back").textContent = r;
+    b.addEventListener("click", function (e) {
+      var first = !b.dataset.seen;
+      b.classList.toggle("on");
+      if (first) {
+        b.dataset.seen = "1"; opened++;
+        flipCount.textContent = opened === reasons.length ? "เปิดครบทุกใบแล้ว แต่ความจริงเหตุผลมีมากกว่านี้อีกเยอะ" : "เปิดแล้ว " + opened + " จาก " + reasons.length + " ใบ";
+        var r0 = b.getBoundingClientRect();
+        burst(r0.left + r0.width / 2, r0.top + r0.height / 2, opened === reasons.length ? 50 : 10, { confetti: opened === reasons.length, power: opened === reasons.length ? 8 : 4 });
+      }
+    });
+    flips.appendChild(b);
+  });
+
+  /* ---------- music box (original tune, Web Audio) ---------- */
+  var musicBtn = document.getElementById("music"), actx = null, timer = null, step = 0;
+  var mel = [659.25, 783.99, 880, 783.99, 659.25, 587.33, 523.25, 587.33, 659.25, 783.99, 1046.5, 880, 783.99, 659.25, 587.33, 523.25];
+  var bass = [261.63, 220, 174.61, 196];
+  function note(f, t, dur, vol, type) {
+    var o = actx.createOscillator(), gn = actx.createGain();
+    o.type = type; o.frequency.value = f;
+    gn.gain.setValueAtTime(0.0001, t);
+    gn.gain.exponentialRampToValueAtTime(vol, t + .015);
+    gn.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(gn); gn.connect(actx.destination); o.start(t); o.stop(t + dur + .05);
+  }
+  function play() {
+    var t = actx.currentTime + .05;
+    note(mel[step % mel.length], t, 1.1, .12, "sine");
+    note(mel[step % mel.length] * 2, t, .5, .025, "sine");
+    if (step % 4 === 0) note(bass[(step / 4) % bass.length], t, 1.6, .07, "triangle");
+    step++;
+  }
+  musicBtn.addEventListener("click", function () {
+    if (timer) {
+      clearInterval(timer); timer = null;
+      musicBtn.classList.remove("on");
+      musicBtn.innerHTML = '<span class="note-ic">♪</span> เปิดกล่องดนตรี';
+      return;
+    }
+    try {
+      actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+      if (actx.state === "suspended") actx.resume();
+    } catch (err) { musicBtn.textContent = "เครื่องนี้เล่นเสียงไม่ได้"; return; }
+    step = 0; play(); timer = setInterval(play, 340);
+    musicBtn.classList.add("on");
+    musicBtn.innerHTML = '<span class="note-ic">♪</span> ปิดเพลง';
+  });
+})();
+</script>
+
+</body>
+</html>
